@@ -1,7 +1,7 @@
 import { pool } from "../database/config.js";
 
 export const obtenerUsuarios = async (req, res) => {
-    console.log("Soliciud recibida");
+    console.log("Obtener: Soliciud recibida");
     try {
 
         const [result] = await pool.query("SELECT * FROM usuario")
