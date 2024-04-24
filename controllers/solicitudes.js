@@ -80,3 +80,30 @@ export const fetchSolicitudesByDni = async (req, res) => {
         })
     }
 }
+
+export const updateEstadoSolicitud = async (req, res) => {
+    const {idsolicitudes} = req.params
+    const {estado} = req.body
+    try {
+        console.log(idsolicitudes)
+        console.log(estado)
+        const [results] = await pool.query('UPDATE solicitudes SET estado = ? WHERE idsolicitudes = ?', [estado, idsolicitudes], (error, results, fields) => {
+            if (error) {
+                console.error('Error al actualizar la solicitud:', error.message);
+            } else {
+                console.log('Solicitud actualizada exitosamente.');
+            }
+        })
+        console.log(results.affectedRows)
+        res.status(200).json({
+            ok: true,
+            results
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            ok: false,
+            error
+        })
+    }
+} 
