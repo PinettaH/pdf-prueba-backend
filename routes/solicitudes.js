@@ -1,9 +1,11 @@
 import express, { Router } from 'express';
-import { crearSolicitud, fetchSolicitudes, fetchSolicitudesByDni, updateEstadoSolicitud } from '../controllers/solicitudes.js';
+import { crearSolicitud, crearSolicitudFaltaConAviso, fetchSolicitudes, fetchSolicitudesByDni, updateEstadoSolicitud } from '../controllers/solicitudes.js';
 export const router = Router();
 
 
 router.post('/', crearSolicitud)
+
+router.post('/falta-con-aviso/:dni', crearSolicitudFaltaConAviso)
 
 router.get('/solicitudes', fetchSolicitudes)
 
